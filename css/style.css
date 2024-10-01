@@ -7,7 +7,6 @@
     --verde: #129933;
     --verde-claro: #11cc40;
     --vermelho:red;
-    --border-radius: 10px;
 }
 
 * {
@@ -33,9 +32,9 @@ body {
     width: 300px;
 }
 
-.display {
+.tela {
     background-color: var(--branco);
-    border-radius: var(--border-radius);
+    border-radius: 10px;
     text-align: right;
     font-size: 2em;
     padding: 10px;
@@ -52,7 +51,7 @@ body {
     background-color: var(--cinza-escuro);
     color: var(--branco);
     border: none;
-    border-radius: var(--border-radius);
+    border-radius: 30px;
     padding: 15px;
     flex: 1;
     margin: 5px;
@@ -74,12 +73,12 @@ body {
     background-color: var(--cinza-claro);
 }
 
-.btn.operators {
+.btn.operadores {
     color: var(--verde-claro);
     background-color: var(--branco-escuro);
 }
 
-.btn.operators:hover {
+.btn.operadores:hover {
     color: var(--verde-claro);
     background-color: var(--cinza-claro);
 }
@@ -93,5 +92,5 @@ body {
 }
 
 .zero {
-    flex: 2; 
+    flex: 4; 
 }
