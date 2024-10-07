@@ -11,3 +11,4 @@ Esta é uma calculadora web simples construída com HTML, CSS e JavaScript. A ca
 ## Observações
 
   Vale ressaltar que esse é um projeto simples, sem o intuito de fazer algo complexo e 100% funcional, apenas para testar os conhecimentos de html, css e javascript...
+
