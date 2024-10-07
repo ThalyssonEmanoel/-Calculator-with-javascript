@@ -6,7 +6,7 @@ let operador = null;
 let novaEntrada = false; 
 
 /**
-*  Função para realizar a soma e quando for dar o resultado;
+*  Função para realizar a soma;
 *  Caso o número do resultado seja maior que 14 digitos irá transformar em hexadecimal
 */
 function realizarSoma(segundoNumero) {
@@ -20,15 +20,26 @@ function realizarSoma(segundoNumero) {
     operador = null; 
 }
 
+/**
+*  Função para realizar a subtração;
+*/
+function realizarSubtracao(segundoNumero) {
+    const resultadoFinal = primeiroNumero - segundoNumero; 
+    resultado.textContent = resultadoFinal.toString().replace('.', ','); 
+    primeiroNumero = null; 
+    operador = null; 
+}
+
 // Função para verificar se o comprimento do resultado é menor que 14
 function limitar14Digits() {
     return resultado.textContent.length < 14; 
 }
 
 /**
- * Antes da execução de todos os outros códigos, ele irá executar o método de adicionar um evento ao clicar nos botões...
- * Logo após determinar que essa função será a primeira a ser executada, 
-*/
+ * Adiciona um evento ao clicar nos botões...
+ * @realizarSoma Realiza a soma antes de armazenar o novo número
+ * @elseif (!isNaN(btnText) || btnText === ',') ---> Adiciona números ou vírgulas ao resultado
+ */
 btns.forEach(btn => {
     btn.addEventListener('click', () => {
         const btnText = btn.textContent; 
@@ -63,9 +74,23 @@ btns.forEach(btn => {
             resultado.textContent = '+'; 
             novaEntrada = true; 
         } 
+
+        else if (btnText === '-') {
+            if (primeiroNumero === null) {
+                primeiroNumero = parseFloat(resultado.textContent.replace(',', '.'));
+            } else {
+                primeiroNumero -= segundoNumero;
+            }
+            operador = btnText; 
+            resultado.textContent = '-'; 
+            novaEntrada = true; 
+        } 
+
         else if (btnText === '=') {
             if (primeiroNumero !== null && operador === '+') {
                 realizarSoma(segundoNumero); 
+            }else if(primeiroNumero !== null && operador === '-'){
+                realizarSubtracao(segundoNumero); 
             }
         }
     });
