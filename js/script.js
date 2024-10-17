@@ -48,6 +48,56 @@ function realizarSubtracao(segundoNumero) {
     operador = null; 
 }
 
+/**
+ * @realizarDivisao Função para realizar a divisão
+ * Segue praticamente o mesmo estilo das outras funções de operações.
+ */
+function realizarDivisao(segundoNumero) {
+    const resultadoFinal = primeiroNumero / segundoNumero; 
+    const resultadoStr = resultadoFinal.toString();
+
+    if (resultadoStr.length > 14) {
+        resultado.textContent = resultadoStr.substring(0, 14); 
+    } else {
+        resultado.textContent = resultadoStr.replace('.', ','); 
+    }
+    primeiroNumero = null; 
+    operador = null; 
+}
+
+/**
+ * @realizarMultiplicacao Função para realizar a multiplicação.
+ */
+function realizarMultiplicacao(segundoNumero) {
+    const resultadoFinal = primeiroNumero * segundoNumero; 
+    const resultadoStr = resultadoFinal.toString();
+
+    if (resultadoStr.length > 14) {
+        resultado.textContent = resultadoStr.substring(0, 14); 
+    } else {
+        resultado.textContent = resultadoStr.replace('.', ','); 
+    }
+    primeiroNumero = null; 
+    operador = null; 
+}
+
+/**
+ * 
+ * @realizarPorcentagem Função para porcentagem. 
+ */
+function realizarPorcentagem(segundoNumero) {
+    const resultadoFinal = primeiroNumero * (segundoNumero)/100; 
+    const resultadoStr = resultadoFinal.toString();
+
+    if (resultadoStr.length > 14) {
+        resultado.textContent = resultadoStr.substring(0, 14); 
+    } else {
+        resultado.textContent = resultadoStr.replace('.', ','); 
+    }
+    primeiroNumero = null; 
+    operador = null; 
+}
+
 
 /**
 * @limitar14Digits Função para verificar se o comprimento do resultado é menor que 14 
@@ -102,14 +152,52 @@ btns.forEach(btn => {
             operador = btnText; 
             resultado.textContent = '-'; 
             novaEntrada = true; 
-        } 
+        }
+
+        else if (btnText === '÷') {
+            if (primeiroNumero === null) {
+                primeiroNumero = parseFloat(resultado.textContent.replace(',', '.'));
+            } else {
+                primeiroNumero = primeiroNumero/segundoNumero;
+            }
+            operador = btnText; 
+            resultado.textContent = '÷'; 
+            novaEntrada = true; 
+        } else if (btnText === 'x') {
+            if (primeiroNumero === null) {
+                primeiroNumero = parseFloat(resultado.textContent.replace(',', '.'));
+            } else {
+                primeiroNumero = primeiroNumero*segundoNumero;
+            }
+            operador = btnText; 
+            resultado.textContent = 'x'; 
+            novaEntrada = true; 
+        } else if (btnText === '%') {
+        if (primeiroNumero === null) {
+            primeiroNumero = parseFloat(resultado.textContent.replace(',', '.'));
+        } else {
+            primeiroNumero = primeiroNumero*segundoNumero;
+        }
+        operador = btnText; 
+        resultado.textContent = '%'; 
+        novaEntrada = true; 
+    }
 
         else if (btnText === '=') {
             if (primeiroNumero !== null && operador === '+') {
                 realizarSoma(segundoNumero); 
             } else if (primeiroNumero !== null && operador === '-') {
                 realizarSubtracao(segundoNumero); 
+            }else if (primeiroNumero !== null && operador === '÷') {
+                realizarDivisao(segundoNumero); 
+            }else if (primeiroNumero !== null && operador === 'x') {
+                realizarMultiplicacao(segundoNumero); 
+            }else if (primeiroNumero !== null && operador === '%') {
+                realizarPorcentagem(segundoNumero); 
             }
         }
     });
 });
+
+
+// Quer dar função ao botão de (), para que ele faça a mesma coisa que faz na matemática casual, como por exemplo---> 2*(2+2)
