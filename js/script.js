@@ -199,5 +199,3 @@ btns.forEach(btn => {
     });
 });
 
-
-// Quer dar função ao botão de (), para que ele faça a mesma coisa que faz na matemática casual, como por exemplo---> 2*(2+2)
