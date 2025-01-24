@@ -5,9 +5,6 @@ let primeiroNumero = null;
 let operador = null; 
 let novaEntrada = false; 
 
-/**
- * Função para limpar a calculadora.
- */
 function limparCalculadora() {
     resultado.textContent = '0'; 
     primeiroNumero = null; 
@@ -105,6 +102,30 @@ function realizarPorcentagem(segundoNumero) {
 function limitar14Digits() {
     return resultado.textContent.length < 14; 
 }
+
+/**
+ * @mapearTeclaParaBotao Função para mapear teclas do teclado para os botões da calculadora.
+ */
+function mapearTeclaParaBotao(tecla) {
+    const mapaTeclas = {
+        '0': '0', '1': '1', '2': '2', '3': '3', '4': '4', 
+        '5': '5', '6': '6', '7': '7', '8': '8', '9': '9',
+        ',': ',', '+': '+', '-': '-', '*': 'x', '/': '÷', 
+        '%': '%', 'Enter': '=', 'Backspace': 'C'
+    };
+    return mapaTeclas[tecla] || null;
+}
+
+document.addEventListener('keydown', (event) => {
+    const tecla = event.key;
+    const botaoCorrespondente = mapearTeclaParaBotao(tecla);
+    if (botaoCorrespondente) {
+        const btn = Array.from(btns).find(btn => btn.textContent === botaoCorrespondente);
+        if (btn) {
+            btn.click();
+        }
+    }
+});
 
 /**
  * @param forEach um bloco de comandas antes de todos os outros.
